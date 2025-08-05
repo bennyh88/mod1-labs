@@ -114,10 +114,5 @@ public class TwentyOne {
 		return cards;
 	}
 	
-//	public static String draw_card (String[] cards) {
-//		
-//		
-//		
-//	}
 
 }
