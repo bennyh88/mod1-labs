@@ -8,7 +8,10 @@ public class Program {
 		//part1();
 		//part2();
 		//part3();
-		
+		part4();
+	}
+	
+	public static void part4() {
 		Bank bank = new Bank();
 		bank.addAccount("Me", 101);
 		bank.addAccount("Myself", 102);
@@ -27,7 +30,6 @@ public class Program {
 		} else {
 			System.out.println(located2.getDetails());
 		}
-		
 	}
 	
 	public static void part3() {
