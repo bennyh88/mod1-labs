@@ -17,7 +17,7 @@ public class TwentyOne {
 		int cards_remaining = cards.length;
 		
 		// Players Go
-		System.out.printf("Players Go!\n");
+		System.out.printf("Players Turn!\n");
 		boolean stick = false;
 		int player_score = 0;
 		while (stick != true) {
@@ -45,7 +45,7 @@ public class TwentyOne {
 		}
 		
 		// Computers Go
-		System.out.printf("Computers Go!\n");
+		System.out.printf("Computers Turn!\n");
 		
 		int computer_score = 0;
 		stick = false;
