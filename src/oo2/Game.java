@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,14 +16,16 @@ import oo2.Shape;
 
 public class Game extends Canvas {
 
-	Shape[] shape = new Shape[5];
+	//Shape[] shape = new Shape[5];
+	ArrayList<Shape> shapes = new ArrayList<Shape>();
 	
 	Game() {
-		shape[0] = new Shape(12,11,50,50,1,1, ShapeType.Rectangle);
-		shape[1] = new Shape(40,100,80,30,2,2, ShapeType.ThreeDRectangle);
-		shape[2] = new Shape(40,100,30,20,1,2, ShapeType.RoundRectangle);
-		shape[3] = new Shape(40,50,80,35,2,1, ShapeType.Oval);
-		shape[4] = new Shape(40,100,30,60,-2,1, ShapeType.Arc);
+		
+		shapes.add( new Shape(12,11,50,50,1,1, ShapeType.Rectangle));
+		shapes.add( new Shape(40,100,80,30,2,2, ShapeType.ThreeDRectangle));
+		shapes.add( new Shape(40,100,30,20,1,2, ShapeType.RoundRectangle));
+		shapes.add( new Shape(40,50,80,35,2,1, ShapeType.Oval));
+		shapes.add( new Shape(40,100,30,60,-2,1, ShapeType.Arc));
 
 		
 		Shape.worldH = 300;
@@ -56,7 +59,7 @@ public class Game extends Canvas {
 
 	public void draw() {
 
-		for (Shape shape : shape) {
+		for (Shape shape : shapes) {
 			shape.move();
 		}
 		this.repaint();
@@ -66,7 +69,7 @@ public class Game extends Canvas {
 	public void paint(Graphics g) {
 		g.drawRect(0, 0, Shape.worldW, Shape.worldH);
 
-		for (Shape shape : shape) {
+		for (Shape shape : shapes) {
 			shape.move();
 			switch(shape.getShapeType()) {
 				case ShapeType.Rectangle:
