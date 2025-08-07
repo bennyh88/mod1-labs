@@ -35,6 +35,7 @@ public class Program {
 					break;
 				}
 			}
+			System.out.println("");
 		}
 		
 	}

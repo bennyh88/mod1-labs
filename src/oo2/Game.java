@@ -10,63 +10,30 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 
 import lab02.Account;
-
-class Ball {
-	public static int worldW;
-	public static int worldH;
-	
-	public int x,y,w,h,dirX, dirY;
-	public Ball(int x, int y, int w, int h, int dirX, int dirY) {
-		this.x = x; this.y = y; this.w = w; this.h = h; this.dirX = dirX; this.dirY = dirY;
-	}
-
-	public static void setWorld(int w, int h) {
-		worldW = w;
-		worldH = h;
-	}
-	
-	public void move() {
-		x += dirX;
-		y += dirY;
-		
-		if( x < 0 || x > (worldW-this.w)) {
-			//x=0;
-			dirX = -dirX;
-		}
-		
-		if( y < 0 || y > (worldH-this.h)) {
-			//y=0;
-			dirY = -dirY;
-		}
-	}
-}
-
+import oo2.ShapeType;
+import oo2.Shape;
 
 public class Game extends Canvas {
-	// create an array of 3 balls 
-	// call this array balls
-	Ball[] balls = new Ball[3];
-	
 
+	Shape[] shape = new Shape[5];
+	
 	Game() {
-		balls[0] = new Ball(12,11,50,50,1,1);
-		balls[1] = new Ball(40,100,30,30,2,1);
-		balls[2] = new Ball(40,100,80,30,2,2);
+		shape[0] = new Shape(12,11,50,50,1,1, ShapeType.Rectangle);
+		shape[1] = new Shape(40,100,80,30,2,2, ShapeType.ThreeDRectangle);
+		shape[2] = new Shape(40,100,30,20,1,2, ShapeType.RoundRectangle);
+		shape[3] = new Shape(40,50,80,35,2,1, ShapeType.Oval);
+		shape[4] = new Shape(40,100,30,60,-2,1, ShapeType.Arc);
+
 		
-		Ball.worldH = 300;
-		Ball.worldW = 200;
+		Shape.worldH = 300;
+		Shape.worldW = 200;
 		
 		JFrame frame = new JFrame();
-		this.setSize(Ball.worldW, Ball.worldH);
+		this.setSize(Shape.worldW, Shape.worldH);
 		frame.add(this);
 		frame.pack();
 		frame.setVisible(true);
 
-		//
-//		for (Ball ball : balls) {
-//			ball.setWorld(300, 300);  
-//		}
-		
 		
 		Timer t = new Timer();
 		TimerTask tt = new TimerTask() {
@@ -88,23 +55,45 @@ public class Game extends Canvas {
 	}
 
 	public void draw() {
-// call the move() method of each balls
-// Tip: use an enhanced for loop to pick 
-//	  each ball in the balls array.
-		for (Ball ball : balls) {
-			ball.move();
+
+		for (Shape shape : shape) {
+			shape.move();
 		}
 		this.repaint();
 	}
 
+	
 	public void paint(Graphics g) {
-		g.drawRect(0, 0, Ball.worldW, Ball.worldH);
-// move and draw each ball in balls array
-// Tip: use an enhanced for loop to pick 
-//	  each ball in the balls array.
-		for (Ball ball : balls) {
-			ball.move();
-			g.drawOval(ball.x, ball.y, ball.w, ball.h);   
+		g.drawRect(0, 0, Shape.worldW, Shape.worldH);
+
+		for (Shape shape : shape) {
+			shape.move();
+			switch(shape.getShapeType()) {
+				case ShapeType.Rectangle:
+					g.setColor(shape.getColor());
+					g.fillRect(shape.x, shape.y, shape.w, shape.h);
+					break;
+				case ShapeType.ThreeDRectangle:
+					g.setColor(shape.getColor());
+					g.fillOval(shape.x, shape.y, shape.w, shape.h);
+					break;
+				case ShapeType.RoundRectangle:
+					g.setColor(shape.getColor());
+					g.fillRoundRect(shape.x, shape.y, shape.w, shape.h, 5, 5);
+					break;
+				case ShapeType.Oval:
+					g.setColor(shape.getColor());
+					g.fillOval(shape.x, shape.y, shape.w, shape.h);
+					break;
+				case ShapeType.Arc:
+					g.setColor(shape.getColor());
+					g.fillArc(shape.x, shape.y, shape.w, shape.h, 120, 240);
+					break;
+				default:
+					// shape not yet implemented, draw an oval
+					g.drawOval(shape.x, shape.y, shape.w, shape.h);
+			}
+			   
 		}
 
 	}
