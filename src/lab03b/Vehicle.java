@@ -24,7 +24,7 @@ public class Vehicle {
 	
 	public void accelerate(int amount) {
 		this.speed = this.speed += amount;
-		if (amount > 200) {
+		if (this.speed > 200) {
 			this.speed = 200;
 		}
 		this.distanceTravelled += this.speed;
@@ -32,7 +32,7 @@ public class Vehicle {
 	
 	public void brake(int amount) {
 		this.speed = this.speed -= amount;
-		if (amount < 0) {
+		if (this.speed < 0) {
 			this.speed = 0;
 		}
 		this.distanceTravelled += this.speed;
