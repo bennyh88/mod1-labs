@@ -1,16 +1,61 @@
 package lab03b;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Program {
 
 	public static void main(String[] args) {
+		
+		//readLog("nonexistentfile");
+		
+		try {
+			log("INitialising Log File");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 		// TODO Auto-generated method stub
-		Vehicle[] vehicles = {
-				new Vehicle(0, 0),
-				new Vehicle(0, 1),
-				new Vehicle(0, 2)
-		};
+		
+		
+		ArrayList<Vehicle> vehicles = new ArrayList<>();
+		try {
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+			vehicles.add(new Vehicle(0, 0));
+
+		} catch (Exception e) {
+			//System.out.println(e.getMessage());
+			//System.out.println("Failed to Init vehicle");
+		}
 		
 		for (Vehicle vehicle : vehicles) {
 			System.out.println(vehicle.getDetails());
@@ -39,5 +84,24 @@ public class Program {
 		}
 		
 	}
+	
+	private static void log(String msg) throws IOException {
+		File file = new File("log.txt");
+		FileWriter fr;
+		fr = new FileWriter(file, true);
+		BufferedWriter br = new BufferedWriter(fr);
+		br.write(msg + "\r\n");
+		br.close();
+		fr.close();
 
+	}
+	
+	
+	private static void readLog(String filename) throws IOException {
+		File file = new File(filename);
+		FileReader fr = new FileReader(file);
+		fr.close();
+	}
 }
+
+

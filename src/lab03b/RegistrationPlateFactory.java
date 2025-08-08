@@ -17,12 +17,13 @@ public class RegistrationPlateFactory {
 			 "WX19 XYZ"  // Bristol 
 	};
 	
-	public static RegistrationPlate getNextRegistrationPlate() {
+	public static RegistrationPlate getNextRegistrationPlate() throws ArrayIndexOutOfBoundsException {
 		RegistrationPlate reg = new RegistrationPlate();
 		reg.setNumber(registrationPlates[regIndex]);
 		System.out.println(registrationPlates[regIndex]);
 		regIndex++;
-		
 		return reg;
 	}
+	
+	
 }

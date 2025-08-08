@@ -14,7 +14,14 @@ public class Vehicle {
 	public Vehicle(int speed, int lane) {
 		this.speed = speed;
 		this.lane = lane;
-		this.registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
+		try {
+			this.registrationPlate = RegistrationPlateFactory.getNextRegistrationPlate();
+		}
+		catch (ArrayIndexOutOfBoundsException e) {
+			//System.out.println(e.getMessage());
+			//System.out.println("Cannot Initialise new Vehicle");
+			throw e;
+		}
 		vehicleCounter++;
 	}
 	
