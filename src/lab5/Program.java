@@ -7,7 +7,7 @@ public class Program {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Zoo zoo = new Zoo();
-		
+		//part2();
 		
 		
 	}
